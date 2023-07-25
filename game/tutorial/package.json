@@ -11,9 +11,11 @@
   "dependencies": {
     "express": "^4.18.2",
     "phaser": "^3.60.0",
-    "socket.io": "^4.7.1",
-    "typescript": "^5.1.6"
+    "socket.io": "^4.7.1"
   },
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
 }
