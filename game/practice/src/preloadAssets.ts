@@ -5,7 +5,6 @@ export class PreloadAssets extends Phaser.Scene {
       key: "PreloadAssets",
     });
   }
-
   preload(): void {
     this.load.json("level:0", "data/level00.json");
     this.load.image("font:numbers", "images/numbers.png");
@@ -49,6 +48,16 @@ export class PreloadAssets extends Phaser.Scene {
     this.load.audio("sfx:door", "audio/door.wav");
   }
   create(): void {
-    this.scene.start("PlayGame");
+    this.add.image(0, 0, "background");
+
+    var data = this.cache.json.get("level:0");
+    const platforms: Phaser.GameObjects.Group = this.add.group();
+    data.platforms.forEach((platform) => {
+      var sprite = platforms.create(platform.x, platform.y, platform.image);
+
+      this.input.enable(sprite);
+      sprite.allowGravity = false;
+      sprite.immovable = true;
+    });
   }
 }

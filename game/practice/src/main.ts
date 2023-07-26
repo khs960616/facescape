@@ -6,13 +6,13 @@ const scaleObject: Phaser.Types.Core.ScaleConfig = {
   mode: Phaser.Scale.FIT,
   autoCenter: Phaser.Scale.CENTER_BOTH,
   parent: "thegame",
-  width: 540,
-  height: 540,
+  width: 960,
+  height: 600,
 };
 
 const configObject: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  backgroundColor: 0x5df4f0,
+  // backgroundColor: 0x5df4f0,
   scale: scaleObject,
   scene: [PreloadAssets, PlayGame],
 };
