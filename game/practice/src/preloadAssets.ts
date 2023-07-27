@@ -60,12 +60,29 @@ export class PreloadAssets extends Phaser.Scene {
     map.addTilesetImage("ground", "ground");
     map.addTilesetImage("grass", "grass");
     map.addTilesetImage("door", "door");
-    const coins = map.addTilesetImage("coin", "coin");
-    console.log(coins);
+    // map.addTilesetImage("coin", "coin");
 
     map.createLayer("platformLayer", ["ground", "grass"]);
     map.createLayer("doorLayer", "door");
-    map.createLayer("coinLayer", "coin");
+    // map.createLayer("coinLayer", coins);
+
+    this.anims.create({
+      key: "rotate",
+      frames: this.anims.generateFrameNumbers("coin", { frames: [0, 1, 2, 3] }),
+      frameRate: 6,
+      repeat: -1,
+    });
+
+    const coins = map.createFromObjects("coinLayer", {});
+
+    // const c = map.createFromTiles(3, null, {
+    //   key: "coins",
+    //   frame: "coin",
+    // });
+    // c.forEach((coin) => {
+    //   coin.play("rotate");
+    // });
+    // console.log(c);
 
     // var data = this.cache.json.get("level:0");
     // const platforms: Phaser.GameObjects.Group = this.add.group();
