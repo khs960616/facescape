@@ -3,9 +3,9 @@ import { PreloadAssets } from "./preloadAssets";
 import { PlayGame } from "./playGame";
 
 const scaleObject: Phaser.Types.Core.ScaleConfig = {
-  mode: Phaser.Scale.FIT,
-  autoCenter: Phaser.Scale.CENTER_BOTH,
-  parent: "thegame",
+  // mode: Phaser.Scale.FIT,
+  // autoCenter: Phaser.Scale.CENTER_BOTH,
+  // parent: "game",
   width: 960,
   height: 600,
 };
