@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,15 +13,26 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* App 전체 크기 설정 */
+body {
+  margin: 32px;
+  font-family: 'MyFont', 'MyFontBold';
+  font-size: 32px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 로컬 폰트 설정 */
+@font-face {
+  font-family: 'MyFont';
+  src: url(../src/assets/fonts/Galmuri11.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'MyFontBold';
+  src: url(../src/assets/fonts/Galmuri11-Bold.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+

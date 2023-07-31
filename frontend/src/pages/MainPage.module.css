@@ -1,0 +1,14 @@
+.main-container {
+    margin: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    min-width: 1200px;
+}
+
+.wrap-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

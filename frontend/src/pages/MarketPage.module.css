@@ -1,0 +1,16 @@
+.market-container {
+    display: flex;
+    min-width: 1200px;
+    height: 100vh;
+    justify-content: center;
+}
+
+.left-container {
+    margin-right: 8px;
+}
+
+.wrap-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

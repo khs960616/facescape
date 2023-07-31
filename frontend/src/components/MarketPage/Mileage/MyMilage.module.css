@@ -1,0 +1,16 @@
+.mileage-box {
+    width: 799px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #FDFF8A;
+    display: flex;
+    align-items: center;
+}
+
+.mileage {
+    color: #DB7500;
+    font-size: 32px;
+    letter-spacing: 6.4px;
+    margin-left: 22px;
+}

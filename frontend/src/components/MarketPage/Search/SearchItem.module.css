@@ -1,0 +1,33 @@
+.search-input {
+    width: 336px;
+    height: 56px;
+    border-radius: 5px;
+    background: rgba(233, 233, 233, 0.76);
+    border: none;
+    font-family: MyFont;
+
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 32px;
+    letter-spacing: 1.6px;
+} 
+
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: row-reverse;
+}
+
+.search-icon {
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+
+    position: absolute;
+
+}
+
+.search-icon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

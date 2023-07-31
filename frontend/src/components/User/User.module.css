@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    border-radius: 5px;
+    background: #3479AD;
+    border: none;
+    color: white;
+    font-size: 32px;
+    width: 453px;
+    height: 73px;
+    padding: 10px;
+    letter-spacing: 3.2px;
+}
+
+.logininput {
+    width: 455px;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(233, 233, 233, 0.76);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    font-family: MyFont;
+}
+
+.error {
+    font-family: MyFont;
+    font-size: 18px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.google {
+    font-family: MyFont;
+    width: 455px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 50px;
+    background-color: white;
+}
+
+.labels {
+    text-align: end;
+}
+
+.label {
+    font-family: 'MyFont';
+    color: rgba(0, 0, 0, 0.45);
+    letter-spacing: 1.6px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}

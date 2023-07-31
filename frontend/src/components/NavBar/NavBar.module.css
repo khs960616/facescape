@@ -1,0 +1,57 @@
+div {
+    font-family: 'MyFontBold'
+}
+
+.nav-bar {
+    display: flex;
+    margin: 32px;
+    justify-content: space-between;
+    position: relative;
+    min-width: 1200px;
+}
+
+.nav-bar-left {
+    display: flex;
+}
+
+.nav-bar-right {
+    display: flex;
+}
+
+.nav-bar-left > *:not(:last-child) {
+    margin-right: 8px;
+}
+
+.nav-bar-right > *:not(:last-child) {
+    margin-right: 8px;
+}
+
+.logo-img {
+    width: 338px;
+    height: 59px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+
+.login {
+    width: 107px;
+    height: 59px;
+    font-size: 32px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.sign-up {
+    width: 222px;
+    height: 59px;
+    font-size: 32px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
