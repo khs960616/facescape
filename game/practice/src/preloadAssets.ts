@@ -1,10 +1,13 @@
 import * as Phaser from "phaser";
+import { Player } from "./player";
 export class PreloadAssets extends Phaser.Scene {
   constructor() {
     super({
       key: "PreloadAssets",
     });
   }
+  platformLayer: Phaser.Tilemaps.TilemapLayer;
+  player: Phaser.Physics.Arcade.Sprite;
   preload(): void {
     this.load.tilemapTiledJSON("map1", "data/map1.json");
 
@@ -50,6 +53,7 @@ export class PreloadAssets extends Phaser.Scene {
     this.load.audio("sfx:door", "audio/door.wav");
   }
   create(): void {
+    // this.physics.world.setFPS(120);
     this.add.image(480, 300, "background");
 
     const map = this.make.tilemap({
@@ -57,41 +61,42 @@ export class PreloadAssets extends Phaser.Scene {
       tileWidth: 32,
       tileHeight: 30,
     });
-    map.addTilesetImage("ground", "ground");
-    map.addTilesetImage("grass", "grass");
-    map.addTilesetImage("door", "door");
-    // map.addTilesetImage("coin", "coin");
 
-    map.createLayer("platformLayer", ["ground", "grass"]);
+    // const ground = map.addTilesetImage("ground", "ground");
+    const grass = map.addTilesetImage("grass", "grass");
+    const door = map.addTilesetImage("door", "door");
+
+    this.platformLayer = map.createLayer("platformLayer", [grass]);
     map.createLayer("doorLayer", "door");
-    // map.createLayer("coinLayer", coins);
 
-    this.anims.create({
-      key: "rotate",
-      frames: this.anims.generateFrameNumbers("coin", { frames: [0, 1, 2, 3] }),
-      frameRate: 6,
-      repeat: -1,
-    });
+    this.player = this.add.existing(new Player(this, 50, 450, "player"));
 
-    const coins = map.createFromObjects("coinLayer", {});
+    //collision setting
+    this.physics.add.collider(this.player, this.platformLayer);
+    this.platformLayer.setCollision(2);
+    this.platformLayer.setCollisionByExclusion([-1], true);
+  }
 
-    // const c = map.createFromTiles(3, null, {
-    //   key: "coins",
-    //   frame: "coin",
-    // });
-    // c.forEach((coin) => {
-    //   coin.play("rotate");
-    // });
-    // console.log(c);
+  update(): void {
+    const isColliding = this.physics.world.collide(
+      this.player,
+      this.platformLayer
+    );
+    console.log(isColliding);
 
-    // var data = this.cache.json.get("level:0");
-    // const platforms: Phaser.GameObjects.Group = this.add.group();
-    // data.platforms.forEach((platform) => {
-    //   var sprite = platforms.create(platform.x, platform.y, platform.image);
+    const { left, right, up } = this.input.keyboard.createCursorKeys();
 
-    //   this.input.enable(sprite);
-    //   sprite.allowGravity = false;
-    //   sprite.immovable = true;
-    // });
+    if (left.isDown) {
+      this.player.setVelocityX(-160);
+    } else if (right.isDown) {
+      this.player.setVelocityX(160);
+    } else {
+      this.player.setVelocityX(0);
+    }
+
+    if (up.isDown && this.player.body.blocked.down) {
+      console.log("jump!");
+      this.player.setVelocityY(-330);
+    }
   }
 }
