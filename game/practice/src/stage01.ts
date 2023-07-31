@@ -1,9 +1,9 @@
 import * as Phaser from "phaser";
 import { Player } from "./player";
-export class PreloadAssets extends Phaser.Scene {
+export class Stage01 extends Phaser.Scene {
   constructor() {
     super({
-      key: "PreloadAssets",
+      key: "Stage01",
     });
   }
   platformLayer: Phaser.Tilemaps.TilemapLayer;

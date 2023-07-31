@@ -1,7 +1,6 @@
 ﻿import * as Phaser from "phaser";
-import { PreloadAssets } from "./preloadAssets";
-// import { PlayGame } from "./playGame";
-
+import { Stage01 } from "./stage01";
+import { StageSelect } from "./stageSelect";
 const scaleObject: Phaser.Types.Core.ScaleConfig = {
   // mode: Phaser.Scale.FIT,
   // autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -26,7 +25,7 @@ const configObject: Phaser.Types.Core.GameConfig = {
   // roundPixels: true,
   // pixelArt: false,
   scale: scaleObject,
-  scene: [PreloadAssets],
+  scene: [StageSelect, Stage01],
 };
 
 new Phaser.Game(configObject);
