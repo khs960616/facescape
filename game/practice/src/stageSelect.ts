@@ -26,7 +26,7 @@ export class StageSelect extends Phaser.Scene {
     });
 
     this.key.on("pointerdown", () => {
-      this.scene.start("Stage01");
+      this.scene.start("Stage02");
     });
   }
 
