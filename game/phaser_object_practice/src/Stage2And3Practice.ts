@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { GameOverPopup } from './GameOverPopUp'
+import { GamePopup } from './GamePopUp'
 
 
 
@@ -50,7 +50,7 @@ export default class ExampleScene extends Phaser.Scene {
 		// 맵 부가 기능(대포, 타이머, 열쇠 등등) 이미지 로드\
 		this.load.spritesheet('trafficLight', ASSET_SUB + '/TrafficLight.png', { frameWidth: 128, frameHeight: 128 });
 		this.load.spritesheet('trampoline', ASSET_SUB + '/Trampoline.png', { frameWidth: 164, frameHeight: 164 });
-		this.load.audio('trampolineJumpSound', ASSET_AUDIO + '/trampoline.wav');
+		this.load.audio('trampolineJumpSound', ASSET_AUDIO + '/Trampoline.wav');
 		this.load.image('spikeTrap', ASSET_SUB + '/SpikeTrap.png');
 
 		// 캐릭터 이미지 로드
@@ -275,7 +275,7 @@ export default class ExampleScene extends Phaser.Scene {
 	gameOver() {
 		this.physics.pause(); // 게임 일시 중지
 
-		new GameOverPopup(this, 400, 300, '게임 오버', () => {
+		new GamePopup(this, 400, 300, '게임 오버', () => {
 			this.scene.restart(); // 게임 재시작
 		}).once("destroy", () => { });
 	}

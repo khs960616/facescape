@@ -1,5 +1,5 @@
 // GameOverPopup.js
-export class GameOverPopup extends Phaser.GameObjects.Container {
+export class GamePopup extends Phaser.GameObjects.Container {
   constructor(scene, width, height, message, action) {
     const x = scene.cameras.main.width / 2;
     const y = scene.cameras.main.height / 2;
