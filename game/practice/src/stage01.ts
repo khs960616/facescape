@@ -1,6 +1,13 @@
 import * as Phaser from "phaser";
 import { Player } from "./player";
 import { GameOverPopup } from "./GameOverPopUp";
+
+//====== wall setting ==============
+const WALL_START_X = 100;
+const WALL_START_Y = 510;
+const WALL_GAP = 55;
+const WALL_Y_OFFSET = 5; // Positioned slightly above the wall below it
+
 export class Stage01 extends Phaser.Scene {
   constructor() {
     super({
@@ -9,6 +16,7 @@ export class Stage01 extends Phaser.Scene {
   }
   platformLayer: Phaser.Tilemaps.TilemapLayer;
   player: Phaser.Physics.Arcade.Sprite;
+  private walls: Phaser.Physics.Arcade.Group;
 
   private cannon!: Phaser.Physics.Arcade.Sprite;
   private cannonBalls!: Phaser.Physics.Arcade.Group;
@@ -22,6 +30,7 @@ export class Stage01 extends Phaser.Scene {
     this.load.image("key", "images/key.png");
 
     this.load.image("cannonBall", "images/CannonBall.png");
+    this.load.image("wall", "images/Wall.png");
 
     this.load.spritesheet("cannon", "images/Cannon.png", {
       frameWidth: 64,
@@ -76,10 +85,10 @@ export class Stage01 extends Phaser.Scene {
     //collision setting
     this.platformLayer.setCollision(2);
     this.physics.add.collider(this.player, this.platformLayer);
-
-    this.platformLayer.setCollisionByExclusion([-1], true);
-
     this.createSubObject();
+
+    this.physics.add.collider(this.walls, this.platformLayer);
+    this.platformLayer.setCollisionByExclusion([-1], true);
   }
 
   update(): void {
@@ -120,10 +129,29 @@ export class Stage01 extends Phaser.Scene {
       loop: true,
     });
     this.fireCount = 0;
+
+    this.walls = this.physics.add.group();
+    this.addWall();
+
+    this.walls;
+
+    this.physics.add.collider(this.walls, this.walls);
+    this.physics.add.collider(
+      this.cannonBalls,
+      this.walls,
+      (cannonBalls, walls) => {
+        cannonBalls.destroy(), walls.destroy();
+      },
+      undefined,
+      this
+    );
+
+    // this.key = this.physics.add.sprite(50, 510, "key", 0).setScale(0.1);
+    // this.physics.add.collider(this.key, this.ground);
   }
 
   addCannonBall() {
-    const cannonBall = this.physics.add.sprite(720, 510, "cannonBall");
+    const cannonBall = this.physics.add.sprite(720, 570, "cannonBall");
     this.cannonBalls.add(cannonBall);
     cannonBall.body.allowGravity = false; // 중력 영향 안 받음
     cannonBall.setVelocityX(-600); // 포탄의 X축 속도 설정
@@ -137,6 +165,26 @@ export class Stage01 extends Phaser.Scene {
       this
     );
   }
+
+  addWall() {
+    for (let i = 0; i < 3; i++) {
+      const positionY = WALL_START_Y - WALL_GAP * i + WALL_Y_OFFSET * i;
+      const wall = this.physics.add
+        .sprite(WALL_START_X, positionY, "wall")
+        .setScale(0.05)
+        .setImmovable(true);
+      wall.body.allowGravity = true;
+
+      this.physics.add.collider(this.player, wall, () => {
+        // wall.body.allowDrag = false;
+        wall.body.immovable = true;
+        wall.body.moves = false;
+      });
+
+      this.walls.add(wall);
+    }
+  }
+
   gameOver() {
     this.physics.pause(); // 게임 일시 중지
 

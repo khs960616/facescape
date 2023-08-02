@@ -16,7 +16,7 @@ const configObject: Phaser.Types.Core.GameConfig = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 150 },
+      gravity: { y: 1000 },
       debug: true,
       checkCollision: { up: true, down: true, left: true, right: true },
       // fps: 200,

@@ -12,6 +12,8 @@ export class Stage02 extends Phaser.Scene {
   preload(): void {
     this.load.tilemapTiledJSON("map2", "data/map2.json");
 
+    this.add.image(400, 300, "hotdog").setScrollFactor(0);
+
     this.load.image("background", "images/background.png");
     this.load.image("grass", "images/grassMid.png");
     this.load.spritesheet("player", "images/hero.png", {
@@ -21,6 +23,11 @@ export class Stage02 extends Phaser.Scene {
     this.load.spritesheet("icon:key", "images/key_icon.png", {
       frameWidth: 34,
       frameHeight: 30,
+    });
+
+    this.load.spritesheet("trafficLight", "images/TrafficLight.png", {
+      frameWidth: 128,
+      frameHeight: 128,
     });
   }
   create(): void {
@@ -38,35 +45,46 @@ export class Stage02 extends Phaser.Scene {
 
     this.platformLayer = map.createLayer("platformLayer", [grass]);
 
-    this.player = this.add.existing(new Player(this, 50, 450, "player"));
+    this.player = this.add.existing(
+      new Player(this, 50, 450, "player", this.platformLayer)
+    );
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
     //collision setting
     this.platformLayer.setCollision(1);
-    this.physics.add.collider(this.player, this.platformLayer);
+    // this.physics.add.collider(this.player, this.platformLayer);
 
     this.platformLayer.setCollisionByExclusion([-1], true);
+
+    const trafficLight = this.add
+      .sprite(
+        this.game.canvas.width / 2,
+        this.game.canvas.height / 2,
+        "trafficLight"
+      )
+      .setScrollFactor(0);
   }
 
   update(): void {
+    this.player.update();
     const isColliding = this.physics.world.collide(
       this.player,
       this.platformLayer
     );
     console.log(isColliding);
 
-    const { left, right, up } = this.input.keyboard.createCursorKeys();
+    // const { left, right, up } = this.input.keyboard.createCursorKeys();
 
-    if (left.isDown) {
-      this.player.setVelocityX(-160);
-    } else if (right.isDown) {
-      this.player.setVelocityX(160);
-    } else {
-      this.player.setVelocityX(0);
-    }
+    // if (left.isDown) {
+    //   this.player.setVelocityX(-160);
+    // } else if (right.isDown) {
+    //   this.player.setVelocityX(160);
+    // } else {
+    //   this.player.setVelocityX(0);
+    // }
 
-    if (up.isDown && this.player.body.blocked.down) {
-      console.log("jump!");
-      this.player.setVelocityY(-330);
-    }
+    // if (up.isDown && this.player.body.blocked.down) {
+    //   console.log("jump!");
+    //   this.player.setVelocityY(-330);
+    // }
   }
 }
