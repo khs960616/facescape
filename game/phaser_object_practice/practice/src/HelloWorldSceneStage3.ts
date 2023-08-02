@@ -242,7 +242,7 @@ export default class ExampleScene extends Phaser.Scene {
 		if (animationConfig && animationConfig.frames && delays.length === animationConfig.frames.length - 1) {
 			const frameData = animationConfig.frames.slice();
 			animationConfig.frames = [];
-			for (let i = 0; i < frameData.length - 1; i++) {
+			for (let i = 0; i < frameData.length - 1; i++) {	
 				animationConfig.frames.push({ ...frameData[i], duration: delays[i] });
 			}
 			animationConfig.frames.push(frameData[frameData.length - 1]);
