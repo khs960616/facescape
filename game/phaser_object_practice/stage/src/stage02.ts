@@ -22,6 +22,9 @@ export class Stage02 extends Phaser.Scene {
       frameWidth: 34,
       frameHeight: 30,
     });
+
+    this.load.atlas('slice', 'images/slice.png', 'images/slice.json');
+
   }
   create(): void {
     // this.physics.world.setFPS(120);
@@ -45,14 +48,32 @@ export class Stage02 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.platformLayer);
 
     this.platformLayer.setCollisionByExclusion([-1], true);
+
+    // 400 200   286 198
+    const bar1 = this.add.nineslice(this.game.canvas.width/2, this.game.canvas.height/6, 'slice', 'ButtonOrange').setScrollFactor(0);
+    const fill1 = this.add.nineslice(this.game.canvas.width/2 - 114, this.game.canvas.height/6 - 2, 'slice', 'ButtonOrangeFill2', 13, 39, 6, 6).setScrollFactor(0);
+    fill1.setOrigin(0, 0.5);
+
+    this.tweens.add({
+      targets: fill1,
+      width: 228,
+      duration: 20000,
+      ease: 'sine.out',
+      yoyo: false,
+      repeat: -1,
+  });
+
+
   }
+
+
+
 
   update(): void {
     const isColliding = this.physics.world.collide(
       this.player,
       this.platformLayer
     );
-    console.log(isColliding);
 
     const { left, right, up } = this.input.keyboard.createCursorKeys();
 

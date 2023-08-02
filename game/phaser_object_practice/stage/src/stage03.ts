@@ -61,7 +61,7 @@ export class Stage03 extends Phaser.Scene {
 
     this.player = this.add.existing(new Player(this, 50, 450, "player"));
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
-    this.trafficLight = this.add.sprite(this.game.canvas.width/2, this.game.canvas.height/5, 'traffic_light').setScrollFactor(0);
+    this.trafficLight = this.add.sprite(this.game.canvas.width/2, this.game.canvas.height/6, 'traffic_light').setScrollFactor(0);
 
     //collision setting
     this.platformLayer.setCollision(1);
