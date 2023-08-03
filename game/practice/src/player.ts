@@ -1,5 +1,4 @@
 import * as Phaser from "phaser";
-import { cursorTo } from "readline";
 export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(
     scene: Phaser.Scene,
