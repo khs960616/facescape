@@ -25,8 +25,6 @@ const LogInLoading: React.FC = () => {
                 sessionStorage.setItem('accessToken', data.accessToken);
                 // 로그인 상태 변경
                 dispatch(setIsLogIn(true));
-                console.log('구글 로그인 요청 응답: 토큰', data);
-
                 // 메인페이지로 이동
                 navigate('/');
             } catch (error) {

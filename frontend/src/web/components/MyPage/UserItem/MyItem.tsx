@@ -24,7 +24,7 @@ const MyItem: React.FC<MyItemProps> = ({ itemId, itemName, checked, onEquip, ite
           try {
               await authInstance.post('/member/equipment', 
                     { itemId }
-              );
+              )
           } catch (error) {
             console.log('아이템 장착 실패', error);
           }

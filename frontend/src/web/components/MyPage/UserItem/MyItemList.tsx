@@ -42,6 +42,7 @@ const MyItemList: React.FC = () => {
                 if (data && data.items.length >= 0) {
                     setItemList(data.items);
                 } 
+                // console.log('내가 구매한 아이템', data.items)
             }  
             catch (error) {
                 console.log('내가 구매한 아이템 불러오기 실패', error);
@@ -49,7 +50,7 @@ const MyItemList: React.FC = () => {
         };
 
         fetchItemList();
-    }, [myCategory]);
+    }, [myCategory,checkedItemId ]);
     
     return (
         <div className={styles['myitem-wrap']}>

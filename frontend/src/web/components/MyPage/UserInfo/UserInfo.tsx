@@ -22,19 +22,21 @@ const UserInfo: React.FC = () =>{
             setNickName(response.data.nickname);
             setEmail(response.data.email);
             setMileage(response.data.mileage);
+            console.log('마이페이지 불러오는 횟수', response);
         } catch (error) {
             console.log(error);
         }
         };
+        // 무한루프
     fetchData();
-  }, [nickName, email, mileage ]);
+  }, [mileage]);
 
     return (
         <div className={styles['userinfo-container']}>
             <UserNickName  nickName={nickName} />
             <UserEmail email={email} />
             <UserMilage mileage={mileage} />
-            <EditInfo nickName={nickName} />
+            <EditInfo nickName={nickName} setNickName={setNickName} />
         </div>
     )
 };

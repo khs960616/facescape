@@ -15,7 +15,6 @@ const SearchItem: React.FC = () => {
 
     const handleSearch = () => {
         dispatch(setKeyword(value));
-        setValue("");
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

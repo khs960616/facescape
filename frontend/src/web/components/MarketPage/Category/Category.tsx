@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Category.module.css';
 
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 import { setItemType } from '../../../store/categorySlice'; 
 
 const Category: React.FC = () => {
     const dispatch = useDispatch();
+    const selectedLastCategory = useSelector((state: RootState) => state.setItemType.itemType);
+    // 아이템 데이터 받고 다시 확인해보기
     const [selectedOption, setSelectedOption] = useState<string>("전체보기");
     
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {

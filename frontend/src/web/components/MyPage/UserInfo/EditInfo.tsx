@@ -4,9 +4,10 @@ import EditModal from './EditModal';
 
 interface UserNickNameProps {
     nickName: string | null,
+    setNickName: any;
 }
 
-const EditInfo: React.FC<UserNickNameProps> = ({ nickName }) => {
+const EditInfo: React.FC<UserNickNameProps> = ({ nickName, setNickName }) => {
     const [openEditModal, setOpenEditModal] = useState<boolean>(false);
 
     const onEditModal = async () => {
@@ -22,7 +23,7 @@ const EditInfo: React.FC<UserNickNameProps> = ({ nickName }) => {
             회원정보수정
         </div>
         <div className={styles['edit-modal']}>
-            {openEditModal ? <EditModal nickName={nickName} onEditModal={onEditModal} /> : null }
+            {openEditModal ? <EditModal nickName={nickName} onEditModal={onEditModal} setNickName={setNickName} /> : null }
         </div>
     </div>
   );
