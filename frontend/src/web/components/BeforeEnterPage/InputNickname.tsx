@@ -4,18 +4,23 @@ import { useDispatch } from 'react-redux';
 import { setNickName } from '../../store/nickNameSlice';
 import { authInstance } from '../../services/api';
 import Swal from 'sweetalert2';
+import NickName from '../WaitingRoomPage/NickName';
 
 const InputNickname: React.FC = () => {
-
+    // 인풋창 닉네임 변화
     const [value, setValue] = useState<string>("");
+    // 닉네임 기본 값
     const [defaultNickName, setDefaultNickName] = useState<string>("");
     const dispatch = useDispatch();
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        // 인풋창에 입력한 값
         const newNickName: string = event.target.value;
         setValue(newNickName);
+        // 리덕스에 닉네임 저장하기
         dispatch(setNickName(newNickName));
     };
+    
 
     const handleClick = () => {
         if (value.length < 1 || value.length > 8) {
@@ -38,11 +43,14 @@ const InputNickname: React.FC = () => {
     };
 
     const fetchData = async () => {
-        try {
-            const { data } = await authInstance.get('/member')
-            setDefaultNickName(data.nickname);   
-        } catch(error) {
-            console.log(error);
+        // 로그인 한 경우에만 기존 닉네임 불러오기
+        if (sessionStorage.getItem('accessToken')) {
+            try {
+                const { data } = await authInstance.get('/member')
+                setDefaultNickName(data.nickname);   
+            } catch(error) {
+                console.log('닉네임 불러오기 오류', error);
+            }
         }
     };
     

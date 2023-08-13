@@ -25,7 +25,8 @@ const store = configureStore({
         setStage: stageReducer,
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false}),
-    devTools: true,
+
+    devTools: process.env.NODE_ENV !== 'production',
 });
 
 

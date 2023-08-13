@@ -3,11 +3,12 @@ import { RootState } from '../../store/store';
 import styles from './WaitingRoom.module.css';
 
 const NickName = () => {
-    const nickName = useSelector((state: RootState) => state.nickName.name);
+    const name = useSelector((state: RootState) => state.nickName.name);
+    console.log('닉네임을 잘 부르는지 확인', name);
     return (
         <div className={styles['nickname-container']}>
             <div className={styles.nickname}>
-                {nickName}
+                {name}
             </div>
             <div className={styles.waitroom}>님의 대기실</div>
         </div>
